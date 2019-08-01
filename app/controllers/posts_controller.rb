@@ -9,8 +9,9 @@ def create
   @post = Post.new(post_params)
   @post.group = @group
   @post.user = current_user
-if @post.save
-    redirect_to group_path(@group),notice: "新增评论成功！"
+
+  if @post.save
+    redirect_to group_path(@group),notice: "新增文章成功！"
   else
     render :new
   end
@@ -23,7 +24,7 @@ end
  def update
 @post = @group.posts.find(params[:id])
    if @post.update(post_params)
-   redirect_to groups_path(@group), notice: "更新成功!"
+   redirect_to groups_path(@group), notice: "Update Success!"
  else
    render :edit
    end
@@ -32,7 +33,7 @@ end
  def destroy
 @post = @group.posts.find(params[:id])
    @post.destroy
-   redirect_to groups_path(@group), alert: "评论已删除!"
+   redirect_to groups_path(@group), alert: "Post deleted!"
  end
 
 private
